@@ -30,7 +30,7 @@ class TestSplitAdrres(unittest.TestCase):
     def test_all_cases(self):
         for address_input, expected_output in self.test_cases:
             self.run_test(address_input, expected_output)
-        input("Aperte qualquer tecla para sair...")
+        input("Aperte enter para sair...")
 
 
 if __name__ == "__main__":

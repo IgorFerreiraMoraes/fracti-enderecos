@@ -38,7 +38,7 @@ def main():
 
     print(parts)
 
-    input("Aperte qualquer tecla para sair...")
+    input("Aperte enter para sair...")
 
 
 if __name__ == "__main__":
