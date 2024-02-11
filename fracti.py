@@ -13,7 +13,7 @@ patterns = {
 
 
 def split_address(input_address):
-    address_parts = set()
+    address_parts = []
 
     # Verifica o formato do endereço e extrai a rua e o número correspondentes
     for pattern_name, pattern_expression in patterns.items():
@@ -23,7 +23,7 @@ def split_address(input_address):
                 re.split(pattern_expression, input_address)[1], input_address
             )
         if match:
-            address_parts.add(match.group())
+            address_parts.append(match.group())
             if (
                 len(address_parts) == 2
             ):  # Dois itens, rua e número, não é necessário continuar o loop
