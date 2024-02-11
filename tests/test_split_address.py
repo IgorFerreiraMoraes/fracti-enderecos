@@ -7,58 +7,26 @@ import unittest
 
 
 class TestSplitAdrres(unittest.TestCase):
-    # Casos Simples
-    def test_simple_case_a(self):
-        address_input = "Miritiba 339"
-        expected_output = {"Miritiba", "339"}
+    test_cases = [  # Tuplas com a entrada e saída esperada
+        ("Miritiba 339", {"Miritiba", "339"}),
+        ("Babaçu 500", {"Babaçu", "500"}),
+        ("Cambuí 804B", {"Cambuí", "804B"}),
+        ("Rio Branco 23", {"Rio Branco", "23"}),
+        ("Quirino dos Santos 23 b", {"Quirino dos Santos", "23 b"}),
+        ("Rua 25 de Março 23a", {"Rua 25 de Março", "23a"}),
+        ("4, Rue de la République", {"Rue de la République", "4"}),
+        ("100 Broadway Av", {"Broadway Av", "100"}),
+        ("Calle Sagasta, 26", {"Calle Sagasta", "26"}),
+        ("Calle 44 No 1991", {"Calle 44", "No 1991"}),
+    ]
+
+    def run_test(self, address_input, expected_output):
         self.assertEqual(split_address(address_input), expected_output)
 
-    def test_simple_case_b(self):
-        address_input = "Babaçu 500"
-        expected_output = {"Babaçu", "500"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    def test_simple_case_c(self):
-        address_input = "Cambuí 804B"
-        expected_output = {"Cambuí", "804B"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    # Casos Mais Complicados
-    def test_complex_case_a(self):
-        address_input = "Rio Branco 23"
-        expected_output = {"Rio Branco", "23"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    def test_complex_case_b(self):
-        address_input = "Quirino dos Santos 23 b"
-        expected_output = {"Quirino dos Santos", "23 b"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    def test_complex_case_c(self):
-        address_input = "Rua 25 de Março 23a"
-        expected_output = {"Rua 25 de Março", "23a"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    # Casos Internacionais
-    def test_international_case_a(self):
-        address_input = "4, Rue de la République"
-        expected_output = {"Rue de la République", "4"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    def test_international_case_b(self):
-        address_input = "100 Broadway Av"
-        expected_output = {"Broadway Av", "100"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    def test_international_case_c(self):
-        address_input = "Calle Sagasta, 26"
-        expected_output = {"Calle Sagasta", "26"}
-        self.assertEqual(split_address(address_input), expected_output)
-
-    def test_international_case_d(self):
-        address_input = "Calle 44 No 1991"
-        expected_output = {"Calle 44", "No 1991"}
-        self.assertEqual(split_address(address_input), expected_output)
+    def test_all_cases(self):
+        for address_input, expected_output in self.test_cases:
+            self.run_test(address_input, expected_output)
+        input("Aperte qualquer tecla para sair...")
 
 
 if __name__ == "__main__":
