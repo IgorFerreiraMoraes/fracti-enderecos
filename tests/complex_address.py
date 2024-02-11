@@ -1,11 +1,10 @@
-
 import sys
 sys.path.append('../')
 from fracti import split_address
 
 import unittest
 
-class TestSimpleCase(unittest.TestCase):
+class TestComplexCase(unittest.TestCase):
     def test_case_a(self):
         address_input = 'Rio Branco 23'
         expected_output = ['Rio Branco', '23']
