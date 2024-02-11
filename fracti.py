@@ -1,28 +1,30 @@
 import re
 
-def split_address(address):
-    number_expression = r'(\d+\s*[a-zA-Z]?\b)$'
-    """
-    \d+ Encontra um ou mais dígitos
-    \s* Identifica zero ou mais espaços
-    [a-zA-Z]?\b Corresponde a uma letra (minúscula ou maiúscula) opcional
-    $ Garante que o número está no fim do endereço
-    """
+def split_address(input_address):
+    # Expressões regulares para identificar diferentes formatos de endereço
+    national_street_pattern = r'^.*?(?=[,]?\s\d+\s*[a-zA-Z]?\b$)'
+    national_number_pattern = r'(\d+\s*[a-zA-Z]?\b)$'
     
-    street_expression = r'^.*?(?=\s\d+\s*[a-zA-Z]?\b$)'
-    """
-    ^ Começa o match no inicio da linha
-    .*? Encontra todos os caracteres até a próxima parte da expressão ser satisfeita
-    (?=\s...) Verifica se a posição atual é seguida por um espaço em branco e depois pelo número \d+\s*[a-zA-Z]?\b
-    """
+    indicator_street_pattern = r'^.*?(?=[,]?\s((?:No|n°|number)\s*\d+)$)'
+    indicator_number_pattern = r'(?:No|n°|number)\s*\d+$'
 
-    street_match = re.match(street_expression, address)
-    number_search = re.search(number_expression, address)
+    inverted_number_pattern = r'^\d+(\s*[a-zA-Z]\b)?(?=[,]?\s*\w)'
+    inverted_street_pattern = r'^\d+\s*[a-zA-Z]?\b[,]?\s*'
 
-    street = street_match.group() if street_match else None # Checa o padrão no começo da linha
-    number = number_search.group() if number_search else None # Checa o padrão em qualquer parte
+    # Verifica o formato do endereço e extrai a rua e o número correspondentes
+    if re.search(indicator_street_pattern, input_address) and re.search(indicator_number_pattern, input_address):
+        street = re.search(indicator_street_pattern, input_address).group()
+        number = re.search(indicator_number_pattern, input_address).group()
+    elif re.search(national_street_pattern, input_address) and re.search(national_number_pattern, input_address):
+        street = re.search(national_street_pattern, input_address).group()
+        number = re.search(national_number_pattern, input_address).group()
+    elif re.search(inverted_street_pattern, input_address) and re.search(inverted_number_pattern, input_address): 
+        street = re.split(inverted_street_pattern, input_address)[1]
+        number = re.search(inverted_number_pattern, input_address).group()
+    else:
+        return 'Não foi possível processar o endereço'
+
     address_parts = [street, number]
-
     return address_parts
 
 def main():
