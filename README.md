@@ -29,6 +29,23 @@ Entregar um Exexcutável, incluindo testes, que atenda os exemplos informados ab
     - '100 Broadway Av' -> {'Broadway Av', '100'}
     - 'Calle Sagasta, 26' -> {'Calle Sagasta', '26'}
     - 'Calle 44 No 1991' -> {'Calle 44', 'No 1991'}
+## Uso
+
+### Python
+Para usar a função de separar endereços, certifique-se de ter o [Python](https://www.python.org/) instalado em seu sistema.
+
+É possível abrir os arquivos diretamente do explorador de arquivos (dois cliques) ou usar o terminal no diretório com o arquivo desejado:
+
+```bash
+python fracti.py
+
+python python test_split_address.py
+```
+
+### Executáveis
+Também estão disponíveis versões compiladas da aplicação como arquivos executáveis (.exe). Para utilizá-los, basta  baixar e executar o arquivo em um PC com Windows.
+
+OBS: Esses arquivos foram fornecidos apenas para avaliação do desafio. **NÃO É RECOMENDADO RODAR ARQUIVOS DESSE TIPO VINDOS DE DESCOHECIDOS!**
 
 ## O Nome
 Devido ao processo de dividir os endereços em suas partes componentes, batizei de "Fracti".
